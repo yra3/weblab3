@@ -34,7 +34,10 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        'my_files' => [
+            'driver' => 'local',
+            'root'   => storage_path('laravel'),
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
