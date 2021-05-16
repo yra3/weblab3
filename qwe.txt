@@ -1,0 +1,22 @@
+select configure_cpu.id, configure_cpu.price, configure_cpu.socket, configure_cpu.maximum_frequency_of_ram, 
+configure_cpu.minimum_frequency_of_ram, configure_cpu.heat_dissipation_tdp,
+
+configure_gpu.id, configure_gpu.price,
+
+configure_motherboard.id, configure_motherboard.price, configure_motherboard.socket, 
+configure_motherboard.supported_memory_type, configure_motherboard.supported_memory_form_factor,
+configure_motherboard.number_of_memory_slots, configure_motherboard.maximum_memory_frequency,
+configure_motherboard.minimum_memory_frequency, 
+
+configure_ram.id, configure_ram.price, configure_ram.memory_form_factor, configure_ram.memory_type,
+configure_ram.number_of_modules_included, configure_ram.clock_frequency
+
+from configure_cpu
+join configure_gpu on configure_cpu.price+configure_gpu.price<2000000
+join configure_motherboard on configure_motherboard.supported_memory_form_factor="DIMM"
+join configure_ram on  configure_ram.memory_form_factor="DIMM" and 
+configure_motherboard.supported_memory_type = configure_ram.memory_type;
+
+SELECT Orders.CreatedAt, Orders.ProductCount, Products.ProductName 
+FROM Orders
+JOIN Products ON Products.Id = Orders.ProductId;
